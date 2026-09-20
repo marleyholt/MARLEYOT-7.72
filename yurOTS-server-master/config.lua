@@ -21,10 +21,10 @@ killsMonthBanishment = 52
 
 -- Connection Config
 -- NOTE: maxPlayers set to 0 means no limit
-ip = "127.0.0.1"
+ip = "137.131.196.66"
 bindOnlyGlobalAddress = false
 loginProtocolPort = 7171
-gameProtocolPort = 7373
+gameProtocolPort = 7172
 statusProtocolPort = 7272
 maxPlayers = 0
 motd = "Bem vindo ao beta teste MarleyOT, em caso de bug envie uma mensagem pra https://discord.gg/V4yKQRC8."
@@ -60,8 +60,8 @@ mapAuthor = "Yurez - Rodi"
 -- MySQL
 mysqlHost = "127.0.0.1"
 mysqlUser = "root"
-mysqlPass = ""
-mysqlDatabase = "yurots"
+mysqlPass = "MARLEY22@@##"
+mysqlDatabase = "yurots_80"
 mysqlPort = 3306
 mysqlSock = ""
 
