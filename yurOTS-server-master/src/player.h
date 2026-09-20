@@ -1108,40 +1108,7 @@ class Player final : public Creature, public Cylinder
 
 		bool isPromoted() const;
 
-		uint32_t getAttackSpeed() const {
-			uint32_t baseSpeed = vocation ? vocation->getAttackSpeed() : 2000;
-			if (baseSpeed == 0) {
-				baseSpeed = 2000;
-			}
-
-			uint32_t fistSkill = getSkillLevel(SKILL_FIST);
-			uint32_t baseFist = g_config.getNumber(ConfigManager::FAST_ATTACK_BASE_FIST);
-			if (baseFist == 0) {
-				baseFist = 10;
-			}
-
-			if (fistSkill <= baseFist) {
-				return baseSpeed;
-			}
-
-			uint32_t excessFist = fistSkill - baseFist;
-			uint32_t reductionPerFist = g_config.getNumber(ConfigManager::FAST_ATTACK_REDUCTION_PER_FIST);
-			if (reductionPerFist == 0) {
-				reductionPerFist = 1;
-			}
-
-			uint32_t reductionPercent = excessFist * reductionPerFist;
-			if (reductionPercent > 80) {
-				reductionPercent = 80; // Trava máxima de redução em 80%
-			}
-
-			uint32_t finalSpeed = (baseSpeed * (100 - reductionPercent)) / 100;
-			if (finalSpeed < 300) {
-				return 300;
-			}
-
-			return finalSpeed;
-		}
+		uint32_t getAttackSpeed() const;
 
 		static uint8_t getPercentLevel(uint64_t count, uint64_t nextLevelCount);
 		static uint16_t getDropLootPercent();

@@ -2927,6 +2927,42 @@ void Player::doAttacking(uint32_t)
 	}
 }
 
+uint32_t Player::getAttackSpeed() const
+{
+	uint32_t speed = vocation ? vocation->getAttackSpeed() : 2000;
+	if (speed == 0) {
+		speed = 2000;
+	}
+
+	uint32_t fistSkill = getSkillLevel(SKILL_FIST);
+	uint32_t baseFist = g_config.getNumber(ConfigManager::FAST_ATTACK_BASE_FIST);
+	if (baseFist == 0) {
+		baseFist = 10;
+	}
+
+	if (fistSkill <= baseFist) {
+		return speed;
+	}
+
+	uint32_t excessFist = fistSkill - baseFist;
+	uint32_t reductionPerFist = g_config.getNumber(ConfigManager::FAST_ATTACK_REDUCTION_PER_FIST);
+	if (reductionPerFist == 0) {
+		reductionPerFist = 1;
+	}
+
+	uint32_t reductionPercent = excessFist * reductionPerFist;
+	if (reductionPercent > 80) {
+		reductionPercent = 80; // Trava máxima de redução em 80%
+	}
+
+	uint32_t finalSpeed = (speed * (100 - reductionPercent)) / 100;
+	if (finalSpeed < 300) {
+		return 300;
+	}
+
+	return finalSpeed;
+}
+
 uint64_t Player::getGainedExperience(Creature* attacker) const
 {
 	if (g_config.getBoolean(ConfigManager::EXPERIENCE_FROM_PLAYERS)) {
