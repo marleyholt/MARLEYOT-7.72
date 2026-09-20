@@ -10,8 +10,10 @@
 find_path(LUA_INCLUDE_DIR luajit.h
   HINTS
     ENV LUA_DIR
-  PATH_SUFFIXES include/luajit-2.0 include
+  PATH_SUFFIXES include/luajit-2.1 include/luajit-2.0 include luajit-2.1 luajit-2.0
   PATHS
+  /usr
+  /usr/local
   ~/Library/Frameworks
   /Library/Frameworks
   /sw # Fink
@@ -21,11 +23,13 @@ find_path(LUA_INCLUDE_DIR luajit.h
 )
 
 find_library(LUA_LIBRARY
-  NAMES luajit-5.1
+  NAMES luajit-5.1 luajit
   HINTS
     ENV LUA_DIR
-  PATH_SUFFIXES lib
+  PATH_SUFFIXES lib lib/x86_64-linux-gnu
   PATHS
+  /usr
+  /usr/local
   ~/Library/Frameworks
   /Library/Frameworks
   /sw

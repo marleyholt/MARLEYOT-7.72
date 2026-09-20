@@ -32,9 +32,9 @@
 # Otherwise the module will search for any available Lua implementation
 
 # Always search for non-versioned lua first (recommended)
-SET(_POSSIBLE_LUA_INCLUDE include include/lua)
-SET(_POSSIBLE_LUA_EXECUTABLE lua)
-SET(_POSSIBLE_LUA_LIBRARY lua)
+SET(_POSSIBLE_LUA_INCLUDE include/luajit-2.1 include/luajit-2.0 include include/lua)
+SET(_POSSIBLE_LUA_EXECUTABLE luajit lua)
+SET(_POSSIBLE_LUA_LIBRARY luajit-5.1 lua)
 
 # Determine possible naming suffixes (there is no standard for this)
 IF(Lua_FIND_VERSION_MAJOR AND Lua_FIND_VERSION_MINOR)
